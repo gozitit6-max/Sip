@@ -1,4 +1,4 @@
-﻿<html lang="ru" style="--panel-opacity: 1; --input-bg: #0e0e16; --input-surface: #14141f;"><head>
+<html lang="ru" style="--panel-opacity: 1; --input-bg: #0e0e16; --input-surface: #14141f;"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
