@@ -1,8 +1,8 @@
 ﻿
         const TABS = [
-            { id: 'holodka', name: 'РЎРёРїС‹ РҐРѕР»РѕРґРєР°', type: 'teams' },
-            { id: 'gosi', name: 'РЎРёРїС‹ Р“РѕСЃРё', type: 'notepad_sections' },
-            { id: 'zakryv', name: 'Р—Р°РєСЂС‹РІ', type: 'notepad' },
+            { id: 'holodka', name: 'СИП Холодная', type: 'teams' },
+            { id: 'gosi', name: 'СИП Хозяйства', type: 'notepad_sections' },
+            { id: 'zakryv', name: 'Закрыто', type: 'notepad' },
         ];
 
         const TEAM_COLORS = [
@@ -718,7 +718,7 @@
             }
         }
 
-        // ===== MANAGERS TABS (Р“РѕСЃРё, Р—Р°РєСЂС‹РІ) =====
+        // ===== MANAGERS TABS (Р“РѕСЃРё, Закрыто) =====
         function addManager(tabId) {
             const input = document.getElementById('newManagerName_' + tabId);
             const name = input.value.trim();
@@ -1041,7 +1041,7 @@
             showStatus(tabId, 'РћС‡РёС‰РµРЅРѕ', '#aaa');
         }
 
-        // ===== CARDS TABS (Р—Р°РєСЂС‹РІ) =====
+        // ===== CARDS TABS (Закрыто) =====
         function getCards(tabId) {
             const si = notepadActiveIdx[tabId] || 0;
             const secs = getNotepadSections(tabId);
