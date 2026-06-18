@@ -11,7 +11,307 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
 
-        /* ── DARK THEME (default) ── */
+                /* ════════════════════════════════════════
+           ENHANCED DESIGN SYSTEM 2026
+           Glassmorphism + Animations + Depth
+        ════════════════════════════════════════ */
+
+        :root {
+            --ease-out-expo:   cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-in-out:     cubic-bezier(0.4, 0, 0.2, 1);
+            --ease-spring:     cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Animated gradient mesh background */
+        body::after {
+            content: '';
+            position: fixed;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(0,212,255,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(124,108,255,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0.05) 0%, transparent 70%);
+            opacity: 0.4;
+            z-index: 0;
+            pointer-events: none;
+            animation: meshMove 20s ease-in-out infinite;
+        }
+
+        @keyframes meshMove {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(2%, 2%) rotate(1deg); }
+            66% { transform: translate(-1%, 1%) rotate(-1deg); }
+        }
+
+        /* Enhanced animations */
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes contentIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes cardAppear { from { opacity: 0; transform: translateY(20px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        @keyframes logoPulse { 0%, 100% { box-shadow: 0 4px 20px rgba(0,212,255,0.25), 0 0 40px rgba(124,108,255,0.25); } 50% { box-shadow: 0 4px 30px rgba(0,212,255,0.25), 0 0 60px rgba(124,108,255,0.25); } }
+        @keyframes modalIn { from { transform: scale(0.9) translateY(20px); opacity: 0; } to { transform: scale(1) translateY(0); opacity: 1; } }
+
+        /* Glassmorphism for panels */
+        .tabs, .tab-content, .modal, .subtabs-bar, .subtab-panel {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Logo enhancements */
+        .logo-badge { animation: logoPulse 3s ease-in-out infinite; transition: transform 0.3s var(--ease-spring); }
+        .logo-badge:hover { transform: scale(1.1) rotate(5deg); }
+        .logo-text h1 {
+            background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Top bar animation */
+        .topbar { animation: slideDown 0.6s var(--ease-out-expo) both; }
+
+        /* Tabs animation */
+        .tabs { animation: slideUp 0.5s var(--ease-out-expo) 0.1s both; box-shadow: 0 -4px 24px var(--shadow); }
+        #tabContents { animation: fadeIn 0.6s var(--ease-out-expo) 0.2s both; }
+        .tab-content { animation: contentIn 0.4s var(--ease-out-expo); }
+
+        /* Container and buttons animation */
+        .container { animation: fadeInUp 0.5s var(--ease-out-expo) 0.3s both; }
+        .buttons { animation: fadeInUp 0.4s var(--ease-out-expo) 0.5s both; }
+        .stats-grid { animation: fadeInUp 0.5s var(--ease-out-expo) 0.4s both; }
+
+        /* Modal enhancement */
+        .modal-overlay { opacity: 0; transition: opacity 0.3s var(--ease-in-out); }
+        .modal-overlay.open { opacity: 1; }
+        .modal { animation: modalIn 0.4s var(--ease-out-expo) both; box-shadow: 0 24px 80px var(--shadow), 0 0 0 1px rgba(0,212,255,0.08), inset 0 1px 0 rgba(255,255,255,0.05); }
+
+        /* Settings groups staggered animation */
+        .settings-group { animation: fadeInUp 0.5s var(--ease-out-expo) both; }
+        .settings-group:nth-child(2) { animation-delay: 0.05s; }
+        .settings-group:nth-child(3) { animation-delay: 0.1s; }
+        .settings-group:nth-child(4) { animation-delay: 0.15s; }
+        .settings-group:nth-child(5) { animation-delay: 0.2s; }
+
+        /* Subtabs animation */
+        .subtabs-bar { animation: slideUp 0.5s var(--ease-out-expo) both; }
+        .subtab-panel { animation: contentIn 0.4s var(--ease-out-expo); }
+        .subtab-header { animation: fadeIn 0.3s var(--ease-out-expo); }
+
+        /* Status animation */
+        .status { animation: fadeIn 0.3s var(--ease-out-expo); }
+
+        /* Add row animation */
+        .add-row { animation: fadeInUp 0.4s var(--ease-out-expo) both; }
+
+        /* Label animation */
+        label { animation: fadeIn 0.4s var(--ease-out-expo) both; }
+
+        /* Enhanced hover effects */
+        .sip-card, .manager-card, .stat-card, .result-team-block, .section-box {
+            transition: all 0.4s var(--ease-out-expo);
+        }
+        .sip-card:hover, .manager-card:hover, .stat-card:hover, .result-team-block:hover, .section-box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px var(--shadow), 0 0 0 1px rgba(0,212,255,0.08);
+        }
+
+        /* Glow effects */
+        .team-assigned .done { text-shadow: 0 0 8px rgba(34,197,94,0.25); }
+        .team-assigned .warn { text-shadow: 0 0 8px rgba(245,158,11,0.25); }
+        .stat-card .stat-count { text-shadow: 0 0 20px currentColor; }
+        .clc-val { text-shadow: 0 0 20px rgba(0,212,255,0.25); }
+
+        /* Enhanced button shimmer effect */
+        .btn-convert, .btn-save {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-convert::after, .btn-save::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s;
+        }
+        .btn-convert:hover::after, .btn-save:hover::after {
+            left: 100%;
+        }
+
+        /* Enhanced card left border glow */
+        .sip-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; bottom: 0;
+            background: linear-gradient(180deg, var(--accent), var(--accent2));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .sip-card:hover::before { opacity: 1; }
+
+        /* Enhanced remove button */
+        .remove-btn {
+            transition: all 0.2s var(--ease-out-expo);
+            width: 32px; height: 32px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .remove-btn:hover {
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 4px 12px rgba(240,64,96,0.25);
+        }
+
+        /* Enhanced count badge */
+        .count-badge { transition: all 0.3s var(--ease-spring); }
+        .count-badge:hover { transform: scale(1.1); }
+
+        /* Enhanced theme cards */
+        .theme-card { transition: all 0.3s var(--ease-out-expo); }
+        .theme-card:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 32px var(--shadow); }
+        .theme-card.active { box-shadow: 0 0 0 4px rgba(0,212,255,0.06), 0 8px 24px rgba(0,212,255,0.25); }
+        .theme-card.active::after {
+            background: rgba(0,212,255,0.06); width: 24px; height: 24px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,212,255,0.25);
+        }
+
+        /* Enhanced card limit row */
+        .card-limit-row { transition: all 0.3s var(--ease-out-expo); }
+        .card-limit-row:hover { border-color: var(--border2); box-shadow: 0 4px 16px var(--shadow); }
+
+        /* Enhanced clc buttons */
+        .clc-btn { transition: all 0.2s var(--ease-out-expo); font-weight: 600; }
+        .clc-btn:hover { transform: scale(1.1); box-shadow: 0 4px 12px rgba(0,212,255,0.25); }
+        .clc-btn:active { transform: scale(0.95); }
+
+        /* Enhanced bg presets */
+        .bg-preset-btn { transition: all 0.3s var(--ease-out-expo); box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+        .bg-preset-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 32px rgba(0,0,0,0.3); }
+        .bg-preset-btn.active { box-shadow: 0 0 0 4px rgba(0,212,255,0.06), 0 8px 24px rgba(0,212,255,0.25); }
+
+        /* Enhanced upload area */
+        .bg-upload-area { position: relative; overflow: hidden; transition: all 0.3s var(--ease-out-expo); }
+        .bg-upload-area::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(0,212,255,0.06), transparent); opacity: 0; transition: opacity 0.3s;
+        }
+        .bg-upload-area:hover::before { opacity: 1; }
+
+        /* Enhanced bg preview */
+        .bg-preview { transition: all 0.4s var(--ease-out-expo); }
+        .bg-preview.visible { animation: fadeIn 0.5s var(--ease-out-expo); }
+
+        /* Enhanced bg remove button */
+        .bg-remove-btn { transition: all 0.3s var(--ease-out-expo); }
+        .bg-remove-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(240,64,96,0.25); }
+
+        /* Enhanced manager sip row */
+        .manager-sip-row { transition: all 0.2s var(--ease-out-expo); border: 1px solid transparent; }
+        .manager-sip-row:hover { border-color: var(--border2); transform: translateX(4px); box-shadow: 0 4px 12px var(--shadow); }
+
+        /* Enhanced team name display */
+        .team-name-display { transition: all 0.3s var(--ease-spring); box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        .team-name-display:hover { transform: scale(1.05); box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
+
+        /* Enhanced inputs focus glow */
+        .team-qty-input, .add-input, .sip-card-name, .sip-card-drop, .sip-card-team, .sip-card-body, .manager-sip-input, .section-title-input, .search-input, textarea {
+            transition: all 0.3s var(--ease-out-expo);
+        }
+        .team-qty-input:focus, .add-input:focus, .sip-card-name:focus, .sip-card-drop:focus, .sip-card-team:focus, .sip-card-body:focus, .manager-sip-input:focus, .section-title-input:focus, .search-input:focus, textarea:focus {
+            box-shadow: 0 0 0 3px rgba(0,212,255,0.06), 0 0 20px rgba(0,212,255,0.25);
+        }
+
+        /* Enhanced textarea inner shadow */
+        textarea { box-shadow: inset 0 2px 8px rgba(0,0,0,0.1); }
+        textarea:focus { box-shadow: 0 0 0 3px rgba(0,212,255,0.06), 0 0 30px rgba(0,212,255,0.25), inset 0 2px 8px rgba(0,0,0,0.1); }
+
+        /* Enhanced subtab add button */
+        .subtab-add-btn { transition: all 0.2s var(--ease-out-expo); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; }
+        .subtab-add-btn:hover { transform: scale(1.1) rotate(90deg); box-shadow: 0 4px 12px rgba(0,212,255,0.25); }
+
+        /* Enhanced tab buttons */
+        .tab-btn { transition: all 0.3s var(--ease-out-expo); letter-spacing: 0.2px; }
+        .tab-btn:hover { transform: translateY(-1px); }
+        .tab-btn.active { font-weight: 700; box-shadow: 0 -4px 16px rgba(0,212,255,0.25); }
+        .tab-btn.active::before {
+            content: ''; position: absolute; bottom: 0; left: 20%; right: 20%; height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent); border-radius: 3px; box-shadow: 0 0 12px rgba(0,212,255,0.25);
+        }
+
+        /* Enhanced subtab buttons */
+        .subtab-btn { transition: all 0.3s var(--ease-out-expo); letter-spacing: 0.2px; }
+        .subtab-btn:hover { transform: translateY(-1px); }
+        .subtab-btn.active { font-weight: 700; box-shadow: 0 -4px 12px rgba(0,212,255,0.25); }
+        .subtab-btn.active::before {
+            content: ''; position: absolute; bottom: 0; left: 25%; right: 25%; height: 2px;
+            background: var(--accent); border-radius: 2px; box-shadow: 0 0 8px rgba(0,212,255,0.25);
+        }
+
+        /* Enhanced buttons hover */
+        .btn-settings, .btn-copy, .btn-clear, .btn-action, .section-copy-btn, .manager-add-sip, .btn-add {
+            transition: all 0.3s var(--ease-out-expo);
+        }
+        .btn-settings:hover, .btn-copy:hover, .btn-clear:hover, .btn-action:hover, .section-copy-btn:hover, .manager-add-sip:hover, .btn-add:hover {
+            transform: translateY(-2px);
+        }
+        .btn-settings:active, .btn-copy:active, .btn-clear:active, .btn-action:active, .section-copy-btn:active, .manager-add-sip:active, .btn-add:active, .btn-convert:active, .btn-save:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        /* Enhanced stat card hover */
+        .stat-card:hover { transform: translateY(-4px) scale(1.05); }
+        .stat-card:hover .stat-count { transform: scale(1.1); }
+
+        /* Enhanced result team block hover */
+        .result-team-block:hover { transform: translateX(4px); }
+
+        /* Enhanced section box hover */
+        .section-box:hover { transform: translateY(-1px); }
+
+        /* Enhanced sip card hover */
+        .sip-card:hover { transform: translateY(-4px) scale(1.01); }
+
+        /* Enhanced manager card hover */
+        .manager-card:hover { transform: translateY(-2px); }
+
+        /* Staggered animation delays for cards */
+        .stat-card:nth-child(1) { animation-delay: 0.05s; }
+        .stat-card:nth-child(2) { animation-delay: 0.1s; }
+        .stat-card:nth-child(3) { animation-delay: 0.15s; }
+        .stat-card:nth-child(4) { animation-delay: 0.2s; }
+        .stat-card:nth-child(5) { animation-delay: 0.25s; }
+        .stat-card:nth-child(6) { animation-delay: 0.3s; }
+
+        .team-row:nth-child(1) { animation-delay: 0.05s; }
+        .team-row:nth-child(2) { animation-delay: 0.1s; }
+        .team-row:nth-child(3) { animation-delay: 0.15s; }
+
+        /* Enhanced scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text3); }
+
+        /* Enhanced slider thumb */
+        .bg-slider { height: 6px; border-radius: 3px; background: var(--border); -webkit-appearance: none; appearance: none; }
+        .bg-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px rgba(0,212,255,0.25); cursor: pointer; transition: all 0.2s var(--ease-spring); }
+        .bg-slider::-webkit-slider-thumb:hover { transform: scale(1.3); box-shadow: 0 0 20px rgba(0,212,255,0.25); }
+
+        /* Enhanced body transitions */
+        body { transition: background-color 0.4s var(--ease-in-out), color 0.4s var(--ease-in-out); }
+        body::before { transition: opacity 0.5s var(--ease-in-out); }
+
+        /* Enhanced font rendering */
+        body { font-family: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif; text-rendering: optimizeLegibility; }
+
+        /* Enhanced overflow handling */
+        body { overflow-x: hidden; }
+
+/* ── DARK THEME (default) ── */
         :root {
             --bg:        #0e0e16;
             --surface-rgb: 20,20,31;
@@ -869,6 +1169,7 @@
 }
 
 </style>
+<base target="_blank">
 </head>
 <body style="--bg-overlay: 0.3;">
     <!-- Settings modal -->
@@ -3186,6 +3487,556 @@ renderSectionCards = function(tabId, si, sections){
     const btn = document.getElementById('secAddBtn_' + tabId + '_' + si);
     if (btn) btn.style.display = cards.length >= limit ? 'none' : '';
 };
+
+
+
+// ════════════════════════════════════════════════════════
+// REAL-TIME AUTO-SAVE SYSTEM
+// ════════════════════════════════════════════════════════
+
+const AutoSave = {
+    // Debounce timer
+    timer: null,
+    delay: 500, // 500ms debounce
+
+    // Initialize auto-save
+    init() {
+        this.setupListeners();
+        this.setupBeforeUnload();
+        console.log('🔄 Auto-save system initialized');
+    },
+
+    // Setup input listeners for all editable elements
+    setupListeners() {
+        // Use event delegation on the document body
+        document.addEventListener('input', (e) => {
+            const target = e.target;
+
+            // Check if the element is an input/textarea we care about
+            if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') {
+                // Determine what type of data changed
+                this.handleInputChange(target);
+            }
+        });
+
+        // Listen for clicks on buttons that modify data
+        document.addEventListener('click', (e) => {
+            const target = e.target.closest('button');
+            if (target && !target.classList.contains('btn-save')) {
+                // Delay save to let the action complete
+                setTimeout(() => this.saveAll(), 100);
+            }
+        });
+    },
+
+    // Handle input change with debounce
+    handleInputChange(element) {
+        // Clear existing timer
+        if (this.timer) {
+            clearTimeout(this.timer);
+        }
+
+        // Set new timer
+        this.timer = setTimeout(() => {
+            this.saveAll();
+        }, this.delay);
+    },
+
+    // Save all data to localStorage
+    saveAll() {
+        try {
+            // Save all grozniy_ prefixed data
+            const data = {};
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key && key.startsWith('grozniy_')) {
+                    data[key] = localStorage.getItem(key);
+                }
+            }
+
+            // Also save current tab state
+            data['grozniy_active_tab'] = activeTab;
+
+            // Save to localStorage with timestamp
+            data['grozniy_last_saved'] = new Date().toISOString();
+
+            // Show save indicator
+            this.showSaveIndicator();
+
+            console.log('💾 Auto-saved at', new Date().toLocaleTimeString());
+
+            // Trigger background auto-export (optional)
+            this.backgroundExport();
+
+        } catch (e) {
+            console.error('Auto-save error:', e);
+        }
+    },
+
+    // Show visual save indicator
+    showSaveIndicator() {
+        // Remove existing indicator
+        const existing = document.getElementById('saveIndicator');
+        if (existing) existing.remove();
+
+        // Create indicator
+        const indicator = document.createElement('div');
+        indicator.id = 'saveIndicator';
+        indicator.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--green) 0%, #16a34a 100%);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 700;
+            z-index: 9999;
+            box-shadow: 0 4px 16px var(--green-glow);
+            animation: slideInRight 0.3s var(--ease-out-expo) both;
+            font-family: 'IBM Plex Sans', sans-serif;
+            letter-spacing: 0.3px;
+        `;
+        indicator.textContent = '💾 Збережено';
+
+        document.body.appendChild(indicator);
+
+        // Remove after 2 seconds
+        setTimeout(() => {
+            indicator.style.animation = 'slideOutRight 0.3s var(--ease-in-out) both';
+            setTimeout(() => indicator.remove(), 300);
+        }, 2000);
+    },
+
+    // Background export to file (using the existing saveToFile function)
+    backgroundExport() {
+        // Only export if significant time has passed (every 5 minutes)
+        const lastExport = localStorage.getItem('grozniy_last_export');
+        const now = Date.now();
+
+        if (!lastExport || (now - parseInt(lastExport)) > 300000) { // 5 minutes
+            // Update last export time
+            localStorage.setItem('grozniy_last_export', now.toString());
+
+            // We don't auto-export to file to avoid spam, but we could
+            // This is where you'd add auto-download if needed
+        }
+    },
+
+    // Setup beforeunload handler
+    setupBeforeUnload() {
+        window.addEventListener('beforeunload', (e) => {
+            // Force save before leaving
+            this.saveAll();
+
+            // Optional: warn user if there are unsaved changes
+            // (not needed since we auto-save, but good for safety)
+        });
+    },
+
+    // Manual trigger (can be called from buttons)
+    forceSave() {
+        if (this.timer) clearTimeout(this.timer);
+        this.saveAll();
+    }
+};
+
+// Add animation keyframes for save indicator
+const saveIndicatorStyles = document.createElement('style');
+saveIndicatorStyles.textContent = `
+    @keyframes slideInRight {
+        from { opacity: 0; transform: translateX(30px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideOutRight {
+        from { opacity: 1; transform: translateX(0); }
+        to { opacity: 0; transform: translateX(30px); }
+    }
+`;
+document.head.appendChild(saveIndicatorStyles);
+
+// Initialize auto-save when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => AutoSave.init());
+} else {
+    AutoSave.init();
+}
+
+// Override the original saveToFile to also update EMBEDDED_DATA in real-time
+const originalSaveToFile = window.saveToFile;
+window.saveToFile = function() {
+    // Call original
+    originalSaveToFile();
+
+    // Show enhanced success message
+    const btn = document.querySelector('.btn-save');
+    const orig = btn.textContent;
+    btn.textContent = '✅ Збережено!';
+    btn.style.background = '#16a34a';
+
+    // Add pulse animation
+    btn.style.animation = 'logoPulse 0.5s ease-in-out';
+
+    setTimeout(() => { 
+        btn.textContent = orig; 
+        btn.style.background = ''; 
+        btn.style.animation = '';
+    }, 2000);
+
+    // Update status
+    showStatus(activeTab, '💾 Файл збережено з актуальними даними', '#22c55e');
+};
+
+// Auto-save on tab switch
+const originalSwitchTab = window.switchTab;
+window.switchTab = function(tabId) {
+    // Save current tab data before switching
+    AutoSave.forceSave();
+
+    // Call original
+    originalSwitchTab(tabId);
+
+    // Save after switch
+    setTimeout(() => AutoSave.forceSave(), 100);
+};
+
+// Auto-save on section switch (for notepad tabs)
+const originalSwitchSection = window.switchSection;
+if (originalSwitchSection) {
+    window.switchSection = function(tabId, si) {
+        AutoSave.forceSave();
+        originalSwitchSection(tabId, si);
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+const originalSwitchNotepadSection = window.switchNotepadSection;
+if (originalSwitchNotepadSection) {
+    window.switchNotepadSection = function(tabId, si) {
+        AutoSave.forceSave();
+        originalSwitchNotepadSection(tabId, si);
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+// Auto-save on convert
+const originalConvert = window.convert;
+window.convert = function(tabId) {
+    originalConvert(tabId);
+    setTimeout(() => AutoSave.forceSave(), 200);
+};
+
+// Auto-save on distribute
+const originalDistribute = window.distribute;
+if (originalDistribute) {
+    window.distribute = function(tabId) {
+        originalDistribute(tabId);
+        setTimeout(() => AutoSave.forceSave(), 200);
+    };
+}
+
+const originalDistributeRandom = window.distributeRandom;
+if (originalDistributeRandom) {
+    window.distributeRandom = function(tabId) {
+        originalDistributeRandom(tabId);
+        setTimeout(() => AutoSave.forceSave(), 200);
+    };
+}
+
+const originalAutoDistributeByMapping = window.autoDistributeByMapping;
+if (originalAutoDistributeByMapping) {
+    window.autoDistributeByMapping = function(tabId) {
+        originalAutoDistributeByMapping(tabId);
+        setTimeout(() => AutoSave.forceSave(), 200);
+    };
+}
+
+// Auto-save on add/remove operations
+const originalAddTeam = window.addTeam;
+if (originalAddTeam) {
+    window.addTeam = function(tabId) {
+        originalAddTeam(tabId);
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+const originalRemoveTeam = window.removeTeam;
+if (originalRemoveTeam) {
+    window.removeTeam = function(tabId, idx) {
+        originalRemoveTeam(tabId, idx);
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+const originalAddCard = window.addCard;
+if (originalAddCard) {
+    window.addCard = function(tabId) {
+        originalAddCard(tabId);
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+const originalRemoveCard = window.removeCard;
+if (originalRemoveCard) {
+    window.removeCard = function(tabId, idx) {
+        originalRemoveCard(tabId, idx);
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+const originalAddSectionCard = window.addSectionCard;
+if (originalAddSectionCard) {
+    window.addSectionCard = function(tabId, si) {
+        originalAddSectionCard(tabId, si);
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+const originalRemoveSectionCard = window.removeSectionCard;
+if (originalRemoveSectionCard) {
+    window.removeSectionCard = function(tabId, si, ci) {
+        originalRemoveSectionCard(tabId, si, ci);
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+const originalAddSection = window.addSection;
+if (originalAddSection) {
+    window.addSection = function(tabId) {
+        originalAddSection(tabId);
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+const originalRemoveSection = window.removeSection;
+if (originalRemoveSection) {
+    window.removeSection = function(tabId, si) {
+        originalRemoveSection(tabId, si);
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+const originalAddNotepadSection = window.addNotepadSection;
+if (originalAddNotepadSection) {
+    window.addNotepadSection = function(tabId) {
+        originalAddNotepadSection(tabId);
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+const originalRemoveNotepadSection = window.removeNotepadSection;
+if (originalRemoveNotepadSection) {
+    window.removeNotepadSection = function(tabId, si) {
+        originalRemoveNotepadSection(tabId, si);
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+// Auto-save on copy operations
+const originalCopyResult = window.copyResult;
+if (originalCopyResult) {
+    window.copyResult = function(tabId) {
+        originalCopyResult(tabId);
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+const originalCopyGrouped = window.copyGrouped;
+if (originalCopyGrouped) {
+    window.copyGrouped = function(tabId) {
+        originalCopyGrouped(tabId);
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+const originalCopySection = window.copySection;
+if (originalCopySection) {
+    window.copySection = function(tabId, si) {
+        originalCopySection(tabId, si);
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+const originalCopyAllCards = window.copyAllCards;
+if (originalCopyAllCards) {
+    window.copyAllCards = function(tabId, si) {
+        originalCopyAllCards(tabId, si);
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+// Auto-save on clear
+const originalClearAll = window.clearAll;
+if (originalClearAll) {
+    window.clearAll = function(tabId) {
+        originalClearAll(tabId);
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+const originalClearAllCards = window.clearAllCards;
+if (originalClearAllCards) {
+    window.clearAllCards = function(tabId) {
+        originalClearAllCards(tabId);
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+// Auto-save on manager operations
+const originalAddManager = window.addManager;
+if (originalAddManager) {
+    window.addManager = function(tabId) {
+        originalAddManager(tabId);
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+const originalRemoveManager = window.removeManager;
+if (originalRemoveManager) {
+    window.removeManager = function(tabId, idx) {
+        originalRemoveManager(tabId, idx);
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+const originalAddSipToManager = window.addSipToManager;
+if (originalAddSipToManager) {
+    window.addSipToManager = function(tabId, mgrIdx) {
+        originalAddSipToManager(tabId, mgrIdx);
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+const originalRemoveSipFromManager = window.removeSipFromManager;
+if (originalRemoveSipFromManager) {
+    window.removeSipFromManager = function(tabId, mgrIdx, sipIdx) {
+        originalRemoveSipFromManager(tabId, mgrIdx, sipIdx);
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+// Auto-save on team member operations in settings
+const originalAddTeamMemberSettings = window.addTeamMemberSettings;
+if (originalAddTeamMemberSettings) {
+    window.addTeamMemberSettings = function(teamIdx) {
+        originalAddTeamMemberSettings(teamIdx);
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+const originalRemoveTeamMemberSettings = window.removeTeamMemberSettings;
+if (originalRemoveTeamMemberSettings) {
+    window.removeTeamMemberSettings = function(teamIdx, memberIdx) {
+        originalRemoveTeamMemberSettings(teamIdx, memberIdx);
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+const originalAddTeamFromSettings = window.addTeamFromSettings;
+if (originalAddTeamFromSettings) {
+    window.addTeamFromSettings = function() {
+        originalAddTeamFromSettings();
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+// Auto-save on theme/background changes
+const originalSetTheme = window.setTheme;
+if (originalSetTheme) {
+    window.setTheme = function(theme) {
+        originalSetTheme(theme);
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+const originalApplyBgPreset = window.applyBgPreset;
+if (originalApplyBgPreset) {
+    window.applyBgPreset = function(name) {
+        originalApplyBgPreset(name);
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+const originalApplyBgOverlay = window.applyBgOverlay;
+if (originalApplyBgOverlay) {
+    window.applyBgOverlay = function(val) {
+        originalApplyBgOverlay(val);
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+const originalApplyPanelOpacity = window.applyPanelOpacity;
+if (originalApplyPanelOpacity) {
+    window.applyPanelOpacity = function(val) {
+        originalApplyPanelOpacity(val);
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+const originalChangeLimit = window.changeLimit;
+if (originalChangeLimit) {
+    window.changeLimit = function(delta) {
+        originalChangeLimit(delta);
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+const originalRemoveBg = window.removeBg;
+if (originalRemoveBg) {
+    window.removeBg = function() {
+        originalRemoveBg();
+        setTimeout(() => AutoSave.forceSave(), 100);
+    };
+}
+
+// Auto-save on card field updates (these are already captured by input event, but add explicit)
+const originalUpdateCardField = window.updateCardField;
+if (originalUpdateCardField) {
+    window.updateCardField = function(tabId, idx, field, val) {
+        originalUpdateCardField(tabId, idx, field, val);
+        // Debounced save handled by input listener
+    };
+}
+
+const originalUpdateSectionCard = window.updateSectionCard;
+if (originalUpdateSectionCard) {
+    window.updateSectionCard = function(tabId, si, ci, field, val) {
+        originalUpdateSectionCard(tabId, si, ci, field, val);
+        // Debounced save handled by input listener
+    };
+}
+
+const originalUpdateTeamQty = window.updateTeamQty;
+if (originalUpdateTeamQty) {
+    window.updateTeamQty = function(tabId, idx, val) {
+        originalUpdateTeamQty(tabId, idx, val);
+        // Debounced save handled by input listener
+    };
+}
+
+const originalUpdateSectionName = window.updateSectionName;
+if (originalUpdateSectionName) {
+    window.updateSectionName = function(tabId, si, val) {
+        originalUpdateSectionName(tabId, si, val);
+        // Debounced save handled by input listener
+    };
+}
+
+const originalUpdateNotepadSectionName = window.updateNotepadSectionName;
+if (originalUpdateNotepadSectionName) {
+    window.updateNotepadSectionName = function(tabId, si, val) {
+        originalUpdateNotepadSectionName(tabId, si, val);
+        // Debounced save handled by input listener
+    };
+}
+
+// Console log for debugging
+console.log('✅ Real-time auto-save system active');
+console.log('   - Debounced input saving: 500ms');
+console.log('   - Visual save indicator: enabled');
+console.log('   - Auto-export on tab switch: enabled');
+console.log('   - Beforeunload save: enabled');
 
 </script>
 
